@@ -105,6 +105,8 @@ POSSIBILITY OF SUCH DAMAGE.
 #define LORA_RESET -1
 #endif
 
+// pin attached to the external temperature sensor
+#define enablePinExternalTemperature 11
 // Data wire is plugged into pin 2 on the Arduino
 #define ONE_WIRE_BUS 2
 // Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
@@ -1041,7 +1043,7 @@ bool getGpsFixAndTransmit()
     pendingReportDataRecord.setTimestamp(getNow());
     pendingReportDataRecord.setBatteryVoltage(getBatteryVoltage());
     pendingReportDataRecord.setBoardTemperature(getBoardTemperature());
-    pendingReportDataRecord.setOneWireTemperature(pendingReportDataRecord()*10);
+    pendingReportDataRecord.setOneWireTemperature(getExternalTemperature()*10);
 
     GpsFixDataRecord record;
     record.init();
@@ -1301,11 +1303,11 @@ void setDevAddrOrEUItoHWEUI()
 float getExternalTemperature(){
   digitalWrite(enablePinExternalTemperature, HIGH);
   sensors.begin();
-  sodaq_wdt_safe_dalay(100);
+  sodaq_wdt_safe_delay(100);
   sensors.requestTemperatures();
-  float temperature = sensors.getTempCByIndex(0)
-  debugSerial.print("Current Water Temperature is: ");
-  debugSerial.println(temperature);
+  float temperature = sensors.getTempCByIndex(0);
+  debugPrint("Current Water Temperature is: ");
+  debugPrintln(temperature);
   digitalWrite(enablePinExternalTemperature, LOW);
 
   return temperature;
