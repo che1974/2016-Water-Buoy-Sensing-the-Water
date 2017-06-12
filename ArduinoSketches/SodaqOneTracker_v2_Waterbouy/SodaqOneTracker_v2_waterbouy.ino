@@ -364,6 +364,10 @@ void updateSendBuffer()
         float temp = (float)pendingReportDataRecord.getBoardTemperature();
         cayenneRecord.addTemperature(3, temp);
 
+        // Add external temperature on data channel 4
+        float externalTemp = (float)pendingReportDataRecord.getOneWireTemperature()/10;
+        cayenneRecord.addTemperature(4, externalTemp);
+
         // Copy out the formatted record
         sendBufferSize = cayenneRecord.copy(sendBuffer);
     }
@@ -1035,6 +1039,7 @@ bool getGpsFixAndTransmit()
     pendingReportDataRecord.setTimestamp(getNow());
     pendingReportDataRecord.setBatteryVoltage(getBatteryVoltage());
     pendingReportDataRecord.setBoardTemperature(getBoardTemperature());
+    pendingReportDataRecord.setOneWireTemperature(pendingReportDataRecord()*10);
 
     GpsFixDataRecord record;
     record.init();
