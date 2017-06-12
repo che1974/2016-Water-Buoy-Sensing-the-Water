@@ -1287,3 +1287,17 @@ void setDevAddrOrEUItoHWEUI()
         }
     }
 }
+
+float getExternalTemperature(){
+  digitalWrite(enablePinExternalTemperature, HIGH);
+  sensors.begin();
+  sodaq_wdt_safe_dalay(100);
+  sensors.requestTemperatures();
+  float temperature = sensors.getTempCByIndex(0)
+  debugSerial.print("Current Water Temperature is: ");
+  debugSerial.println(temperature);
+  digitalWrite(enablePinExternalTemperature, LOW);
+
+  return temperature;
+}
+
