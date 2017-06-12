@@ -70,8 +70,10 @@ POSSIBILITY OF SUCH DAMAGE.
 #define MAX_RTC_EPOCH_OFFSET 25
 
 #define ADC_AREF 3.3f
-#define BATVOLT_R1 4.7f
-#define BATVOLT_R2 10.0f
+//#define BATVOLT_R1 2.0f // One v1
+//#define BATVOLT_R2 2.0f // One v1
+#define BATVOLT_R1 4.7f // One v2
+#define BATVOLT_R2 10.0f // One v2
 
 #define DEBUG_STREAM SerialUSB
 #define CONSOLE_STREAM SerialUSB
