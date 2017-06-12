@@ -71,7 +71,7 @@ void ConfigParams::read()
 
 void ConfigParams::reset()
 {
-    _defaultFixInterval = 15;
+    _defaultFixInterval = 1;
     _alternativeFixInterval = 0;
     _alternativeFixFromHours = 0;
     _alternativeFixFromMinutes = 0;
@@ -98,13 +98,15 @@ void ConfigParams::reset()
 
     _temperatureSensorOffset = 20;
     _loraPort = 1;
-    _isAdrOn = 1;
+    _isAdrOn = 0;
     _isAckOn = 0;
     _spreadingFactor = 7;
     _powerIndex = 1;
     _isGpsOn = 1;
     _gpsMinSatelliteCount = 4;
     _isDebugOn = 0;
+
+    _isCayennePayloadEnabled = 1;
 
     if (configResetCallback) {
         configResetCallback();
