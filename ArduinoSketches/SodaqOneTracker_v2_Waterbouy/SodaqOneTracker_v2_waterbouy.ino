@@ -358,7 +358,7 @@ void updateSendBuffer()
 
         // Add battery voltage on data channel 2
         float voltage = (float)pendingReportDataRecord.getBatteryVoltage() * 10 + 3000;
-        cayenneRecord.addAnalogInput(2, voltage);
+        cayenneRecord.addAnalogInput(2, voltage / 1000);
 
         // Add temperature on data channel 3
         float temp = (float)pendingReportDataRecord.getBoardTemperature();
