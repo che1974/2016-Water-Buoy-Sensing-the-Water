@@ -31,6 +31,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <OneWire.h>
 #include "RTCTimer.h"
 #include "RTCZero.h"
 #include "Sodaq_RN2483.h"
@@ -47,6 +48,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "LedColor.h"
 #include "Enums.h"
 #include "CayenneLPP.h"
+#include "DallasTemperature.h"
 
 //#define DEBUG
 
@@ -100,6 +102,13 @@ POSSIBILITY OF SUCH DAMAGE.
 #ifndef LORA_RESET
 #define LORA_RESET -1
 #endif
+
+// Data wire is plugged into pin 0 on the Arduino
+#define ONE_WIRE_BUS 0
+// Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
+OneWire oneWire(ONE_WIRE_BUS);
+// Pass our oneWire reference to Dallas Temperature. 
+DallasTemperature sensors(&oneWire);
 
 RTCZero rtc;
 RTCTimer timer;
