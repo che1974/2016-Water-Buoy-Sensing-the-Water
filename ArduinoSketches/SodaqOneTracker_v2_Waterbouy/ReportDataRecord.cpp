@@ -53,7 +53,8 @@ void ReportDataRecord::printRecordLn(Stream* stream, const char* separator) cons
         fieldPrintWithSeparator(stream, separator, getSpeed());
         fieldPrintWithSeparator(stream, separator, getCourse());
         fieldPrintWithSeparator(stream, separator, getSatelliteCount());
-        fieldPrintWithSeparator(stream, "\n", getTimeToFix());
+        fieldPrintWithSeparator(stream, separator, getTimeToFix()); 
+        fieldPrintWithSeparator(stream, "\n", getOneWireTemperature());
     }
 }
 
