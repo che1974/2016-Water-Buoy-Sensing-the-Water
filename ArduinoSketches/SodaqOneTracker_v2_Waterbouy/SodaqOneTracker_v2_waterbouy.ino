@@ -188,6 +188,9 @@ void setup()
     pinMode(ENABLE_PIN_IO, OUTPUT);
     digitalWrite(ENABLE_PIN_IO, HIGH);
 
+    // Power switch pin for the external temperature sensor
+    pinMode(enablePinExternalTemperature, OUTPUT);
+
     lastResetCause = PM->RCAUSE.reg;
 
     // In case of reset (this is probably unnecessary)
