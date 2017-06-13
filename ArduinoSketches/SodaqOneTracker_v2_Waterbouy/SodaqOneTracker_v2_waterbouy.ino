@@ -1302,9 +1302,11 @@ void setDevAddrOrEUItoHWEUI()
 
 float getExternalTemperature(){
   digitalWrite(enablePinExternalTemperature, HIGH);
+  sodaq_wdt_safe_delay(10);
   sensors.begin();
-  sodaq_wdt_safe_delay(100);
+  sodaq_wdt_safe_delay(10);
   sensors.requestTemperatures();
+  sodaq_wdt_safe_delay(10);
   float temperature = sensors.getTempCByIndex(0);
   debugPrint("Current Water Temperature is: ");
   debugPrintln(temperature);
