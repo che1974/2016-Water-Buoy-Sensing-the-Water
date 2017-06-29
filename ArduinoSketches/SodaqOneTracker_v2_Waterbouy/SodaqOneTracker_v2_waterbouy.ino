@@ -1136,6 +1136,7 @@ void setLoraActive(bool on)
 
     if (on) {
         LoRaBee.wakeUp();
+		sodaq_wdt_safe_delay(10);
     }
     else {
         LoRaBee.sleep();
